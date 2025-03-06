@@ -1,0 +1,33 @@
+.title::after {
+    content: "";
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-image: url('../public/icon.png');
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    bottom: 3px;
+    margin-left: 5px;
+}
+
+ul .list-item::before {
+    content: "";
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-image: url('../public/unchecked.png');
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+}
+
+ul .list-item.checked {
+    text-decoration: line-through;
+    color: #555;
+}
+
+ul .checked::before {
+    background-image: url('../public/checked.png');
+}
