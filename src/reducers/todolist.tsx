@@ -1,5 +1,7 @@
 const initState = {
     items: [] as any[],
+    isEditModalOpen: false,
+    currentEditIndex: null,
 };
 
 export const todoListReducer = (state = initState, action: any) => {
@@ -19,10 +21,27 @@ export const todoListReducer = (state = initState, action: any) => {
         case "TO_DO_DELETE": {
             return {
                 items: state.items.filter((_, index) => 
-                    index !== action.index,
+                    index !== action.index
                 )
             };
         }
+
+        case "TOGGLE_EDIT_MODAL": {
+            return {
+                ...state,
+                isEditModalOpen: !state.isEditModalOpen,
+                currentEditIndex: action.index !== undefined ? action.index : state.currentEditIndex,
+            }
+        }
+        case "TO_DO_EDIT": {
+            return {
+                ...state,
+                items: state.items.map((item: any, index: any) =>
+                    index === action.index ? { ...item, content: action.newContent } : item
+                ),
+            };
+        }
+        default:
+            return state;
     }
-    return state;
 }
